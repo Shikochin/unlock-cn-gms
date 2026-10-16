@@ -15,6 +15,7 @@ Supported file locations:
 - `/my_bigball/etc/permissions/oplus_google_cn_gms_features.xml`
 - `/my_product/etc/permissions/oplus_google_cn_gms_features.xml`
 - `/my_heytap/etc/permissions/my_heytap_cn_gms_features.xml`
+- `/my_heytap/etc/permissions/my_heytap_cn_features.xml`
 
 ---
 部分国行手机，或者本地化后的 ROM 中有内置 GMS ，但是某些功能无法使用，比如无法开启 `Google Location History` 服务，无法使用 `Google Map Timeline`，设备无法在 Web 版 Google play 中显示等等。
@@ -27,7 +28,7 @@ Supported file locations:
  ``` 
  以此来实现去除国行 GMS 的限制。
 
- 注意：部分设备上可能同时存在多个配置文件（如小米 8e5 同时在 `/odm` 和 `/product` 分区下各有一个），本模块会自动处理所有匹配的文件。对于独立挂载的分区（如 `/odm`、`/my_bigball` 等），通过 bind mount 方式替换。
+ 注意：部分设备上可能同时存在多个配置文件（如小米 8e5 同时在 `/odm` 和 `/product` 分区下各有一个），本模块会自动处理所有匹配的文件。模块只准备 KernelSU 的 `system` 目录内容，实际挂载由 [KernelSU metamodule](https://kernelsu.org/zh_CN/guide/metamodule.html)（例如 `meta-overlayfs`）负责，因此使用 KernelSU 时需要先安装 metamodule。
 
  **注意**：为了开启 `Google Location History` 服务，你可能还需要配合其他模块   
  例如
